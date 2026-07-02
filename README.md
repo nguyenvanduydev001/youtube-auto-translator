@@ -14,9 +14,9 @@ YouTube Auto Translate là một tiện ích Chrome Extension giúp tự động
 
 ## Demo
 
-![Ảnh demo](https://file+.vscode-resource.vscode-cdn.net/d%3A/Workspace/ai/youtube-auto-translator/demo.png)
+![Ảnh demo](demo.png)
 
-![Video demo](https://file+.vscode-resource.vscode-cdn.net/d%3A/Workspace/ai/youtube-auto-translator/demo.gif)
+![Video demo](demo.gif)
 
 ## Yêu cầu
 
