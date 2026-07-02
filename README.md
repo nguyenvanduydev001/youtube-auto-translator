@@ -27,7 +27,7 @@ YouTube Auto Translate là một tiện ích Chrome Extension giúp tự động
 
 1. Tải mã nguồn về máy hoặc clone repository:
    ```bash
-   git clone https://github.com/your-username/youtube-auto-translator.git
+   git clone https://github.com/nguyenvanduydev001/youtube-auto-translator.git
    ```
 2. Mở Chrome và truy cập: `chrome://extensions`
 3. Bật chế độ "Developer mode"
