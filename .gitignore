@@ -1,0 +1,12 @@
+# Phòng hờ nếu sau này tạo lại file config chứa key thật — không đưa lên git
+config.local.js
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.log
+
+# Gói build/zip nếu có
+*.zip
+*.crx
+*.pem

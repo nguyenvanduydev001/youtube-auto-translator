@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Auto Translate</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        width: 280px;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 13px;
+        color: #e8e8e8;
+        background: #1a1a1a;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: #2a2a2a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+
+      h1 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.3;
+      }
+
+      label {
+        display: block;
+        font-size: 11px;
+        color: #888;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      input[type='password'] {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #fff;
+        background: #252525;
+        margin-bottom: 14px;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #555;
+      }
+
+      .btn-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.15s;
+      }
+
+      button:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
+
+      #btnStart {
+        background: #fff;
+        color: #1a1a1a;
+      }
+
+      #btnStart:hover:not(:disabled) {
+        opacity: 0.9;
+      }
+
+      #btnStop {
+        background: #333;
+        color: #ccc;
+      }
+
+      #btnStop:hover:not(:disabled) {
+        background: #3d3d3d;
+      }
+
+      #statusLine {
+        margin-top: 14px;
+        font-size: 12px;
+        text-align: center;
+        color: #666;
+      }
+
+      #statusLine.running {
+        color: #4caf50;
+      }
+
+      #statusLine.stopped {
+        color: #ef5350;
+      }
+
+      .guide-link {
+        display: block;
+        margin-top: 14px;
+        text-align: center;
+        font-size: 11px;
+        color: #666;
+        text-decoration: none;
+        cursor: pointer;
+        background: none;
+        border: none;
+        width: 100%;
+        padding: 0;
+        font-weight: 400;
+      }
+
+      .guide-link:hover {
+        color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo" aria-hidden="true">🌐</div>
+      <h1>YouTube Auto Translate</h1>
+    </div>
+
+    <label for="apiKey">Groq API Key</label>
+    <input type="password" id="apiKey" placeholder="gsk_..." autocomplete="off" />
+
+    <div class="btn-row">
+      <button id="btnStart">Bắt đầu Dịch</button>
+      <button id="btnStop" disabled>Dừng Dịch</button>
+    </div>
+
+    <p id="statusLine" class="stopped">● Đã dừng</p>
+
+    <button type="button" id="btnGuide" class="guide-link">Hướng dẫn lấy API Key →</button>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

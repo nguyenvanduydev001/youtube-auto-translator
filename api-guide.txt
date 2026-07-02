@@ -1,0 +1,14 @@
+HƯỚNG DẪN LẤY GROQ API KEY (MIỄN PHÍ)
+======================================
+
+Bước 1: Truy cập https://console.groq.com/keys
+
+Bước 2: Đăng nhập / Đăng ký tài khoản (Google hoặc Github).
+
+Bước 3: Bấm "Create API Key", đặt tên tùy ý và copy chuỗi Key (bắt đầu bằng gsk_...).
+
+Bước 4: Dán Key vào ô của extension và bấm "Bắt đầu Dịch".
+
+Ghi chú:
+- Groq API có gói miễn phí (Free tier) với giới hạn request nhất định, đủ để dùng cá nhân dịch video YouTube. Không phải trả phí.
+- Mở video YouTube, bật phụ đề (CC), rồi bấm Bắt đầu Dịch.

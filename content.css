@@ -1,0 +1,53 @@
+/**
+ * Phụ đề tiếng Việt đè lên video YouTube
+ */
+
+#movie_player,
+.html5-video-player {
+  position: relative;
+}
+
+#my-vn-subtitle {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  z-index: 9999;
+
+  max-width: 88%;
+  padding: 12px 20px;
+
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.02em;
+  font-family: 'YouTube Noto', 'Roboto', 'Segoe UI', Arial, sans-serif;
+
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+
+  pointer-events: none;
+  user-select: none;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+#my-vn-subtitle.vn-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 640px) {
+  #my-vn-subtitle {
+    font-size: 17px;
+    max-width: 94%;
+    bottom: 8%;
+    padding: 10px 14px;
+  }
+}
