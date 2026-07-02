@@ -226,14 +226,12 @@ function sleep(ms) {
 
 // ─── Tab communication ─────────────────────────────────────────────────────
 
+// SỬA ĐỔI: Hàm không còn bọc try-catch chặn lỗi để startTranslation() biết khi nào lỗi kết nối xảy ra.
 async function sendToContentTab(tabId, payload) {
-  try {
-    await chrome.tabs.sendMessage(tabId, payload);
-  } catch (err) {
-    logError('Không gửi được tới content script:', err.message);
-  }
+  await chrome.tabs.sendMessage(tabId, payload);
 }
 
+// SỬA ĐỔI: Gửi tin nhắn kết nối thử trước rồi mới thay đổi biến hệ thống.
 async function startTranslation(tabId) {
   try {
     if (isTranslating) {
@@ -246,20 +244,25 @@ async function startTranslation(tabId) {
       return { success: false, message: 'Vui lòng nhập Groq API Key.' };
     }
 
+    // Gửi thử thông tin tới content script trước
+    await sendToContentTab(tabId, { type: 'START_CAPTION_TRANSLATION' });
+
+    // Nếu gửi thành công không lỗi, thiết lập trạng thái dịch
     isTranslating = true;
     activeTabId = tabId;
     await persistState();
 
-    await sendToContentTab(tabId, { type: 'START_CAPTION_TRANSLATION' });
-
-    logState('Bắt đầu dịch, tab:', tabId);
+    logState('Bắt đầu dịch thành công trên tab:', tabId);
     return { success: true };
   } catch (err) {
-    logError('Lỗi start:', err.message);
+    logError('Không gửi được tới content script (Tab chưa sẵn sàng hoặc cần F5):', err.message);
     isTranslating = false;
     activeTabId = null;
     await persistState();
-    return { success: false, message: err.message };
+    return { 
+      success: false, 
+      message: 'Không kết nối được tới phụ đề YouTube. Hãy bấm F5 lại trang YouTube và thử lại!' 
+    };
   }
 }
 
@@ -269,7 +272,11 @@ async function stopTranslation() {
     translateQueue = [];
 
     if (activeTabId) {
-      await sendToContentTab(activeTabId, { type: 'STOP_CAPTION_TRANSLATION' });
+      try {
+        await sendToContentTab(activeTabId, { type: 'STOP_CAPTION_TRANSLATION' });
+      } catch (err) {
+        logError('Không gửi được lệnh dừng tới content script:', err.message);
+      }
     }
 
     activeTabId = null;
@@ -283,8 +290,6 @@ async function stopTranslation() {
 }
 
 // ─── Message handler ────────────────────────────────────────────────────────
-// Luôn trả về true để giữ kênh (port) mở, tránh lỗi
-// "message port closed before a response was received".
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   try {
